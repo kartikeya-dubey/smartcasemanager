@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" xmlns=:th="http://www.thymeleaf.org" th:replace="normal/base::Layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Show Cases</title>
+</head>
+
+<body>
+	<section>
+		<div class="card">
+			<h1 class="text-center mt-4 mb-3">Look up a case</h1>
+
+			<div class="search-container mt-4 mb-4 ml-3 mr-3">
+
+				<section>
+				<h4>Search by Client Name:</h4>
+				<input type="text" onkeyup="searchClientName()" id="search-client"
+						class="form-control" placeholder="Search Client Name here" />
+
+				<div class="search-result">
+					<!-- Search suggestion section (Hidden by default) -->
+				</div>
+				</section>
+				
+				<section class="mt-4">
+				<h4>Search by Case Name:</h4>
+				<input type="text" onkeyup="searchCaseName()" id="search-casename"
+						class="form-control" placeholder="Search Case Name here" />
+
+				<div class="search-caseNameResult">
+					<!-- Search suggestion section (Hidden by default) -->
+				</div>
+				</section>
+				
+				<section class="mt-4">
+				<h4>Search by Case Number:</h4>
+				<input type="text" onkeyup="searchCaseId()" id="search-caseid"
+						class="form-control" placeholder="Search Case ID here" />
+
+				<div class="search-caseIdResult">
+					<!-- Search suggestion section (Hidden by default) -->
+				</div>
+				</section>
+
+
+
+
+
+
+			</div>
+
+		</div>
+	</section>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en" xmlns=:th="http://www.thymeleaf.org" th:replace="normal/base::Layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Add Case</title>
+</head>
+
+<body>
+	<section>
+
+		<div class="card">
+
+			<div class="card-body">
+
+				<h1 class="text-center">Add Case Details</h1>
+
+				<div class="container-fluid mt-1">
+
+					<div class="row">
+
+						<div class="col-md-10 offset-md-1">
+
+							<form action="#" th:object="${newCase}" enctype="multipart/form-data" method="POST"
+								th:action="@{/user/process-case}" class="mt-2">
+
+								<!-- Client name -->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+
+										<div class="input-group-text mr-2">
+											<i class="fas fa-user-alt"></i>
+											<!-- fa: icons taken from font awesom site: https://fontawesome.com/v4/icon/file-text -->
+										</div>
+									</div>
+
+									<input required type="text" id="clientName" name="clientName" placeholder="Enter client name here"
+										class="form-control" />
+
+								</div>
+
+								<!-- Case name -->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+
+										<div class="input-group-text mr-2">
+											<i class="fa fa-file-text"></i>
+										</div>
+									</div>
+
+									<input required type="text" id="caseName" name="caseName" placeholder="Enter case name here"
+										class="form-control" />
+
+								</div>
+
+								<!-- Case Type -->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+
+										<div class="input-group-text mr-2">
+											<i class="fa-solid fa-scale-balanced"></i>
+										</div>
+									</div>
+
+									<input required type="text" id="caseType" name="caseType"
+										placeholder="Enter case type (Civil/Criminal/Corporate/Litigation)"
+										class="form-control" />
+
+								</div>
+
+								<!-- Email -->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+
+										<div class="input-group-text mr-2">
+											<i class="fa fa-envelope"></i>
+										</div>
+									</div>
+
+									<input type="email" id="email" name="email" placeholder="Enter E-Mail here"
+										class="form-control" />
+
+								</div>
+
+								<!-- Phone number -->
+								<div class="input-group mt-3">
+									<div class="input-group-prepend">
+
+										<div class="input-group-text mr-2">
+											<i class="fa fa-phone"></i>
+										</div>
+									</div>
+
+									<input type="number" id="phoneNo" name="phone"
+										placeholder="Enter contact number here" class="form-control" />
+
+								</div>
+
+								<!-- Case details -->
+								<div class="input-group mt-3">
+									<textarea class="form-control" name="caseDetails" id="caseDetails"
+										placeholder="Enter case details" cols="" rows="5"></textarea>
+
+								</div>
+								
+								<!-- Case file image
+								<div class="custom file mt-3">
+									<input type="file" name="image" />
+								</div> -->
+								
+								
+								<!-- Action buttons-->
+								<div class="container text-center mt-3">
+									<button class="btn btn-outline-primary">Save</button>
+								</div>
+								
+							</form>
+
+						</div>
+
+					</div>
+
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" xmlns=:th="http://www.thymeleaf.org" th:replace="normal/base::Layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>User Profile Settings</title>
+</head>
+
+<body>
+	<section>
+		<div class="card p-4">
+			<h2 class="text-center p-3 bg-danger text-white">[Page Under Construction]</h2>
+			<div class="container" style="border: 1px solid #ccc;">
+
+				<!-- Display Power of Attorney picture -->
+				<img src="" style="height: 175px; width: 175px;margin-left: 42%; margin-bottom: 20px;"
+					class="settings text-center" th:src="@{'/img/settings.png'}" alt="settings picture" />
+
+
+				<div class="row">
+					<div class="col-4 mb-4">
+						<div class="list-group" id="list-tab" role="tablist">
+							<a class="list-group-item list-group-item-action active" id="list-home-list"
+								data-toggle="list" href="#list-home" role="tab" aria-controls="home">Settings</a>
+							<a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list"
+								href="#list-profile" role="tab" aria-controls="profile">Update Profile Details</a>
+							<a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list"
+								href="#list-messages" role="tab" aria-controls="messages">Change Password</a>
+							<a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list"
+								href="#list-settings" role="tab" aria-controls="settings">Enable/Disable Account</a>
+						</div>
+					</div>
+					<div class="col-8 mb-4">
+						<div class="tab-content" id="nav-tabContent">
+							<div class="tab-pane fade show active" id="list-home" role="tabpanel"
+								aria-labelledby="list-home-list">Would like to take control of your account?<br>Here you may update your:<br><br> Profile Details<br>Account Password<br> Account Status.<br><br>For support reach us at "support@SCM.com" </div>
+							<div class="tab-pane fade" id="list-profile" role="tabpanel"
+								aria-labelledby="list-profile-list">Click here to Update Profile Details</div>
+							<div class="tab-pane fade" id="list-messages" role="tabpanel"
+								aria-labelledby="list-messages-list">Click here to Change Account Password</div>
+							<div class="tab-pane fade" id="list-settings" role="tabpanel"
+								aria-labelledby="list-settings-list">Click here to Change Account active status. Are you sure you want to enable/disable your account?</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</section>
+</body>
+
+</html>

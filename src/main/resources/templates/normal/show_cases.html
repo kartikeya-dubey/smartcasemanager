@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" xmlns=:th="http://www.thymeleaf.org" th:replace="normal/base::Layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Show Cases</title>
+</head>
+
+<body>
+	<section>
+		<div class="card">
+			<h1 class="text-center mt-3 mb-3">Your Case List</h1>
+			
+			<table class="table table-hover text-left">
+				<thead>
+					<tr>
+						<th scope="col">Case ID</th>
+						<th scope="col">Client Name</th>
+						<th scope="col">Case Name</th>
+						<th scope="col">Contact</th>
+						<th scope="col">Action</th>
+					</tr>
+				</thead>
+				<body>
+					<!-- Using thymeleaf forEach to create rows based on cases under the user -->
+					<tr th:each="c :${userAllCases}">
+						<th scope="row" th:text="'#SCM Case- '+${c.cid}"></th>
+						<td class="text-left">
+							<img src="" class="power-of-attorney" th:src="@{'/img/'+${c.image}}" alt="power of attorney" />
+							<span th:text="${c.clientName}"></span>
+						</td>
+						<td>
+							<a href="#" th:href="@{'/user/case/'+${c.cid}}" />
+							<span th:text="${c.caseName}+' ('+${c.caseType}+')'"></span>
+						</td>
+						<td th:text="${c.email}+' (+91 '+${c.phone}+')'">-</td>
+			
+			
+						<td>
+							<form method="post" th:action="@{'/user/update-case/'+${c.cid}}">
+								<button type="submit" class="btn btn-primary btn-sm">Update</button>
+							</form>								
+							
+							<a href="#" th:onclick="|deleteCase(${c.cid})|" class="btn btn-danger btn-sm mt-2 " role="button">Delete</a>
+						</td>
+					</tr>
+				</body>
+			</table>
+			
+			<!-- Pagination: Page navigation bar -->
+			<nav aria-label="Cases navigation">
+			  <ul class="pagination justify-content-center">
+				  
+				<!-- if: hide previous if no previous page present-->
+			    <li th:if="${currentPage != 0}" class="page-item">
+					
+			      <a class="page-link" href="#" 
+			      th:href="@{'/user/show-all-cases/'+${currentPage-1}}" aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			      </a>
+			      
+			    </li>
+			    
+			    <!-- classappend: make current page no. bold (active) + each: show page no based on record quantitye-->
+			    <li 
+			    th:classappend="${currentPage==i-1?'active':''}" 
+			    th:each="i : ${#numbers.sequence(1,totalPages)}" 
+			    class="page-item">
+			    
+			    		<!-- href: modify page URL as url=0 is page=1-->
+			    		<a class="page-link" href="#" 
+			    		th:href="@{'/user/show-all-cases/'+${i-1}}">
+			    		<span th:text="${i}"></span>
+			    		</a>
+			    </li>
+			    
+			    <!-- if: hide next if no further page present-->
+			    <li th:if="${currentPage+1 != totalPages}" class="page-item">
+					
+			      <a class="page-link" href="#" 
+			      th:href="@{'/user/show-all-cases/'+${currentPage+1}}" aria-label="Next">
+			        <span aria-hidden="true">&raquo;</span>
+			      </a>
+			      
+			    </li>
+			    
+			  </ul>
+			</nav>
+		</div>
+	</section>
+</body>
+
+</html>

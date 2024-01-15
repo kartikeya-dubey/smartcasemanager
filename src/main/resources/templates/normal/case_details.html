@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en" xmlns=:th="http://www.thymeleaf.org" th:replace="normal/base::Layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Case Details</title>
+</head>
+
+<body>
+	<section>
+
+		<div class="card" th:if="${caseDetails}">
+
+			<div class="card-body">
+
+				<div class="container">
+
+					<nav aria-label="breadcrumb" class="bg-light rounded-3 p-1 mb-3">
+						<ol class="breadcrumb mb-0">
+							<li class="breadcrumb-item"><a href="#" th:href="@{/user/index}">Dashboard</a></li>
+							<li class="breadcrumb-item"><a href="#" th:href="@{'/user/show-all-cases/0'}">All Cases</a>
+							</li>
+							<li class="breadcrumb-item active" aria-current="page">
+								<span th:text="'#'+${caseDetails.cid}"></span>
+							</li>
+							
+							<div class="breadbutton">
+								
+								<form method="post" th:action="@{'/user/update-case/'+${caseDetails.cid}}">
+									<button type="submit" class="btn btn-primary btn-sm mb-1 btn-block">Update</button>
+								</form>
+								
+								<a href="#" th:onclick="|deleteCase(${caseDetails.cid})|" class="btn btn-danger btn-sm btn-block"
+									role="button">Delete </a>
+								
+							</div>
+						</ol>
+					</nav>
+
+					<!-- Display Power of Attorney picture -->
+					<img src="" style="height: 175px; width: 130px;margin-left: 42%;"
+						class="power-of-attorney text-center" th:src="@{'/img/'+${caseDetails.image}}"
+						alt="power of attorney" />
+
+
+					<div class="table table-hover">
+						<div class="card mb-4 ">
+							<div class="card-body">
+								<div class="row">
+									<div class="col-sm-3" style="display:inline-block">
+										<p class="mb-0">Case ID / Name:</p>
+									</div>
+									<div class="col-sm-9">
+										<p class="text-muted mb-0"
+											th:text="'#SCM Case-'+${caseDetails.cid}+' / '+${caseDetails.caseName}">NA
+										</p>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-sm-3">
+										<p class="mb-0">Client Name:</p>
+									</div>
+									<div class="col-sm-9">
+										<p class="text-muted mb-0" th:text="${caseDetails.clientName}">NA</p>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-sm-3">
+										<p class="mb-0">Case Type:</p>
+									</div>
+									<div class="col-sm-9">
+										<p class="text-muted mb-0" th:text="${caseDetails.caseType}">NA</p>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-sm-3">
+										<p class="mb-0">Contact details:</p>
+									</div>
+									<div class="col-sm-9">
+										<p class="text-muted mb-0"
+											th:text="${caseDetails.phone}+' / '+${caseDetails.email}">NA</p>
+									</div>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-sm-3">
+										<p class="mb-0">Case Details:</p>
+									</div>
+									<div class="col-sm-9">
+										<p class="text-muted mb-0" th:utext="${caseDetails.caseDetails}">NA</p>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<h2 class="text-center p-3 bg-danger text-white" th:unless="${caseDetails}">[ACCESS DENIED] You do not have
+			permission to view this case!</h2>
+
+	</section>
+</body>
+
+</html>
