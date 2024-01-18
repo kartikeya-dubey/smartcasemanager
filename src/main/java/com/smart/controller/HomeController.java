@@ -23,71 +23,69 @@ public class HomeController {
 
 	@Autowired
 	private UserRepository userRepository;
-	
+
 	@RequestMapping("/")
 	public String home(Model model) {
-		model.addAttribute("title","Home - Smart Case Manager");
+		model.addAttribute("title", "Home - Smart Case Manager");
 		return "home";
 	}
-	//Hey
+
 	@RequestMapping("/about")
 	public String about(Model model) {
-		model.addAttribute("title","About - Smart Case Manager");
+		model.addAttribute("title", "About - Smart Case Manager");
 		return "about";
 	}
-	
+
 	@RequestMapping("/signup")
 	public String signup(Model model) {
-		model.addAttribute("title","Register - Smart Case Manager");
+		model.addAttribute("title", "Register - Smart Case Manager");
 		model.addAttribute("user", new User());
 		return "signup";
 	}
-	
-	//handler for registering user
-	
+
+	// handler for registering user
+
 	@PostMapping("/do_register")
-	public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult bResult, @RequestParam(value="agreement", defaultValue = "false") boolean agreement, Model model, HttpSession session)
-	{
+	public String registerUser(@Valid @ModelAttribute("user") User user, BindingResult bResult,
+			@RequestParam(value = "agreement", defaultValue = "false") boolean agreement, Model model,
+			HttpSession session) {
 		try {
-			if(!agreement)
-			{
+			if (!agreement) {
 				throw new Exception("You have not agreed to Terms & Conditions");
 			}
-			
-			//To check error list of server side validations
-			if(bResult.hasErrors())
-			{
-				System.out.println("ERROR: "+bResult.toString());
+
+			// To check error list of server side validations
+			if (bResult.hasErrors()) {
+				System.out.println("ERROR: " + bResult.toString());
 				model.addAttribute("user", user);
 				return "signup";
 			}
-			
-			//setting user values to user object for Database entry
+
+			// setting user values to user object for Database entry
 			user.setRole("ROLE_USER");
 			user.setEnabled(true);
 			user.setImageUrl("default.png");
-			//Encrypting the password before storing it in database 
+			// Encrypting the password before storing it in database
 			user.setPassword(new BCryptPasswordEncoder(10).encode(user.getPassword()));
-			
-			User result=this.userRepository.save(user);
-			
+
+			User result = this.userRepository.save(user);
+
 			session.setAttribute("message", new Message("Successfully registered", "alert-success"));
-			
+
 			model.addAttribute("user", new User());
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			model.addAttribute("user" , user);
+			model.addAttribute("user", user);
 			session.setAttribute("message", new Message(e.getMessage(), "alert-danger"));
 		}
 		return "signup";
 	}
-	
+
 	@GetMapping("/signin")
-	public String loginUser(Model model)
-	{
+	public String loginUser(Model model) {
 		System.out.println("1");
-		model.addAttribute("title","Login - Smart Case Manager");
+		model.addAttribute("title", "Login - Smart Case Manager");
 		System.out.println("2");
 		return "login";
 	}
