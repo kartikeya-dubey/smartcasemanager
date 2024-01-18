@@ -29,7 +29,7 @@ public class HomeController {
 		model.addAttribute("title","Home - Smart Case Manager");
 		return "home";
 	}
-	
+	//Hey
 	@RequestMapping("/about")
 	public String about(Model model) {
 		model.addAttribute("title","About - Smart Case Manager");
