@@ -50,5 +50,4 @@ public class SearchController {
 		List<Case> caseSuggestions = this.caseRepository.findByCidAndUser(query, user);
 		return ResponseEntity.ok(caseSuggestions);
 	}
-
 }
